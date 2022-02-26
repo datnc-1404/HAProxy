@@ -63,7 +63,7 @@ HAProxy also allows a dedicated backup server, to be used when the servers are o
    Web Server1: WordPress
        [![z3213109196814-b6e47598e62842812afbc7f140f47053.jpg](https://i.postimg.cc/FKM66pBJ/z3213109196814-b6e47598e62842812afbc7f140f47053.jpg)](https://postimg.cc/B8CNLTsq)
    Web Server2: NextCloud
-        [![z3213209456686-6b0d32afe1ce51dff268f6f4eab8468f.jpg](https://i.postimg.cc/TP6mHWc3/z3213209456686-6b0d32afe1ce51dff268f6f4eab8468f.jpg)](https://postimg.cc/TKtpK1Sz)
+       [![z3213654760512-b0d53f0670f8ed08b25fb6cb3cd61ab7.jpg](https://i.postimg.cc/BnJ3TbJH/z3213654760512-b0d53f0670f8ed08b25fb6cb3cd61ab7.jpg)](https://postimg.cc/fJq1ZwtR)
    
    4.2 Install HAProxy:
     - Install HAProxy on Ubuntu Server 20.4.
@@ -100,4 +100,14 @@ HAProxy also allows a dedicated backup server, to be used when the servers are o
    
    4.3 Test HAProxy:
    
+   - Copy IP HAProxy & Pate:
+      ![image](https://user-images.githubusercontent.com/74607192/155836925-56a7d44d-aef4-4d41-be17-91aa1a76fb61.png)
+   - F5 to refesh:
+      ![image](https://user-images.githubusercontent.com/74607192/155836964-946a3e92-95e9-4fdb-9027-a215efa6a07c.png)
+   - After, turn off database from Server2 to check HAProxy:
+      ![image](https://user-images.githubusercontent.com/74607192/155837035-26d89710-2f62-4fd3-8391-70559d334f91.png)
+   - Continue,and:
+      ![image](https://user-images.githubusercontent.com/74607192/155837053-1389dd75-2d52-4dc1-bdd9-5bc5955269c3.png)
+   -That's OK
+
       
