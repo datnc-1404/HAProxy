@@ -50,3 +50,22 @@ HAProxy also allows a dedicated backup server, to be used when the servers are o
    Layer 7 load balancing is the most complex and also the most customizable. Using load balancing at layer 7, we can redirect requests based on the content of that request. With this type of load balancing, multiple backends can be used for a single domain and port.
    
   [![z3213038351228-59f5ff4b1876d8a3cb5ce569df69189d.jpg](https://i.postimg.cc/Qdy5hysV/z3213038351228-59f5ff4b1876d8a3cb5ce569df69189d.jpg)](https://postimg.cc/3k2WZ9kH)
+### III. Differences between load balancing algorithms?
+   - roundrobin: requests will be routed to the server in turn. This is the default algorithm used for HAProxy #các request sẽ được chuyển đến server theo lượt. Đây là thuật toán mặc định được sử dụng cho HAProxy
+   - leastconn: requests will be directed to the server that has the fewest connections to it #các request sẽ được chuyển đến server nào có ít kết nối đến nó nhất
+   - source: requests are routed to the server using the hash of the user's IP. This method helps users to ensure that they are always connected to a server #các request được chuyển đến server bằng các hash của IP người dùng. Phương pháp này giúp người dùng đảm bảo luôn kết nối tới một server
+### IV. How to install HAProxy?
+   4.1 Preparation:
+     
+   Preparation includes 3 machines. Includes 1 HAproxy Server, 2 Web Servers
+      [![z3213075249541-d1b03674b2d1dbd374398aba498eb15d.png](https://i.postimg.cc/PrqQHZZ3/z3213075249541-d1b03674b2d1dbd374398aba498eb15d.png)](https://postimg.cc/fk69jV8m)
+  
+   Web Server1
+   
+   Web Server2
+   
+   4.2 Install HAProxy:
+   
+   4.3 Test HAProxy:
+   
+      
