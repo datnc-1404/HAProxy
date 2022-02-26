@@ -60,11 +60,43 @@ HAProxy also allows a dedicated backup server, to be used when the servers are o
    Preparation includes 3 machines. Includes 1 HAproxy Server, 2 Web Servers
       [![z3213075249541-d1b03674b2d1dbd374398aba498eb15d.png](https://i.postimg.cc/PrqQHZZ3/z3213075249541-d1b03674b2d1dbd374398aba498eb15d.png)](https://postimg.cc/fk69jV8m)
   
-   Web Server1
-   
-   Web Server2
+   Web Server1: WordPress
+       [![z3213109196814-b6e47598e62842812afbc7f140f47053.jpg](https://i.postimg.cc/FKM66pBJ/z3213109196814-b6e47598e62842812afbc7f140f47053.jpg)](https://postimg.cc/B8CNLTsq)
+   Web Server2: NextCloud
+        [![z3213209456686-6b0d32afe1ce51dff268f6f4eab8468f.jpg](https://i.postimg.cc/TP6mHWc3/z3213209456686-6b0d32afe1ce51dff268f6f4eab8468f.jpg)](https://postimg.cc/TKtpK1Sz)
    
    4.2 Install HAProxy:
+    - Install HAProxy on Ubuntu Server 20.4.
+    - Update Ubuntu :
+      
+         sudo apt-get -y update
+         
+    
+   - Install HAProxy:
+         
+         sudo apt-get -y install haproxy
+         
+        [![z3213262803948-f131950bbf8a3cfd63ac45d819395809.jpg](https://i.postimg.cc/xCfSgYp4/z3213262803948-f131950bbf8a3cfd63ac45d819395809.jpg)](https://postimg.cc/sBN8gFrY)
+        
+   - Config HAProxy Conf:
+      
+         backend name-backend                        # bắt đầu định nghĩa backend với tên name-backend
+             balance  roundrobin                     # thuật toán cân bằng tải sử dụng
+
+             mode http                               # chế độ cần bằng tải (còn có mode tcp)
+
+             server server1 mydomain.com:80 check    # server1 (chỉ ra bằng domain và cổng)
+             server server2 IP:80 check              # server2 (chỉ ra bằng IP và cổng)
+                                            # chữ check ở cuối là yêu cầu HAProxy kiểm tra server
+         frontend name-frontend                                  # bắt đầu định nghĩa một frontend đặt tên là name-frontend
+            bind *:80                                           # nhận phân tích các request gửi đến cổng 80 từ IP bất kỳ
+
+            acl alc1 hdr_dom(host) -i  testhaproxy1.com         # định nghĩa alc1 là: nếu domain truy vấn là testhaproxy1.com
+            acl alc2 hdr_dom(host) -i  testhaproxy2.com         # định nghĩa alc2 là: nếu domain truy vấn là testhaproxy2.com
+
+            use_backend name-backend if acl1                    # chuyển request đến backend có tên name-backend nếu acl1 thỏa mãn
+            use_backend other-backend if alc2                   # chuyển request đến backend có tên other-backend nếu acl2 thỏa mãn
+            use_backend default_backend                         # chuyển request đến backend có tên default-backend nếu request chưa chuyển cho backend nào!
    
    4.3 Test HAProxy:
    
